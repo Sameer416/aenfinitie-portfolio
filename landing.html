@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aenfinite Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        body { 
+            font-family: 'Inter', sans-serif; 
+            background: linear-gradient(135deg, #38bdf8 0%, #e0e7ef 40%, #f7f9fb 100%);
+        }
+        .gradient-bg { background: linear-gradient(135deg, #2563eb 0%, #38bdf8 100%); }
+        .card-hover { transition: all 0.3s cubic-bezier(.4,0,.2,1); }
+        .card-hover:hover { transform: translateY(-8px) scale(1.03); box-shadow: 0 20px 40px rgba(37,99,235,0.08); }
+        .portfolio-item { transition: all 0.3s cubic-bezier(.4,0,.2,1); cursor: pointer; border: 1.5px solid #e0e7ef; box-shadow: 0 2px 8px rgba(37,99,235,0.04); }
+        .portfolio-item:hover { transform: scale(1.05); border-color: #2563eb; box-shadow: 0 8px 32px rgba(37,99,235,0.10); }
+        .animate-float { animation: float 6s ease-in-out infinite; }
+        @keyframes float { 0%, 100% { transform: translateY(0px); } 50% { transform: translateY(-20px); } }
+        .logo-img:hover { transform: scale(1.1); }
+        .main-heading { color: #2563eb; font-weight: 800; letter-spacing: -1px; }
+        .sub-heading { color: #1e293b; font-weight: 700; }
+        .filter-btn { font-weight: 600; letter-spacing: 0.5px; }
+        .floating-btn { position: fixed; bottom: 32px; right: 32px; background: #38bdf8; color: hsl(0, 4%, 87%); width: 56px; height: 56px; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 24px rgba(56,189,248,0.18); font-size: 2rem; z-index: 50; transition: background 0.2s; }
+        .floating-btn:hover { background: #2563eb; }
+        /* Glassmorphism utility */
+        .glass {
+            background: rgba(255, 255, 255, 0.18);
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.10);
+            backdrop-filter: blur(12px) saturate(160%);
+            -webkit-backdrop-filter: blur(12px) saturate(160%);
+            border-radius: 1.5rem;
+            border: 1.5px solid rgba(255, 255, 255, 0.28);
+        }
+    </style>
+</head>
+<body class="bg-[#f7f9fb]">
+    <!-- Portfolio Landing Section -->
+    <section id="portfolio" class="py-20 min-h-screen flex flex-col justify-center glass mx-2 md:mx-0">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 glass p-8">
+                <div class="flex flex-col items-center mb-4">
+                    <img src="/aenfinite k.png" alt="Aenfinite Logo" class="h-14 md:h-16 object-contain mb-2" style="max-width:180px;" />
+                    <h1 class="main-heading text-5xl md:text-6xl mb-2">Aenfnite <span class="text-[#38bdf8]">Portfolio</span></h1>
+                </div>
+                <h2 class="sub-heading text-3xl md:text-4xl mb-4">Redefine Infinite Possibilities</h2>
+                <p class="text-xl text-gray-600 max-w-2xl mx-auto">
+                    Explore our diverse portfolio. From web design & development to digital marketing, mobile & software solutions, and AI automation & integration.
+                </p>
+            </div>
+            <!-- Portfolio Filter -->
+            <div class="flex flex-wrap justify-center gap-4 mb-12 glass p-4">
+                <button onclick="filterPortfolio('all', event)" class="filter-btn bg-blue-600 text-white px-6 py-2 rounded-full hover:bg-blue-700 transition-colors">All Projects</button>
+                <button onclick="filterPortfolio('cms', event)" class="filter-btn bg-gray-200 text-gray-700 px-6 py-2 rounded-full hover:bg-gray-300 transition-colors">Custom & CMS Development</button>
+                <button onclick="filterPortfolio('uiux', event)" class="filter-btn bg-gray-200 text-gray-700 px-6 py-2 rounded-full hover:bg-gray-300 transition-colors">UI/UX Designing & Branding</button>
+                <button onclick="filterPortfolio('marketing', event)" class="filter-btn bg-gray-200 text-gray-700 px-6 py-2 rounded-full hover:bg-gray-300 transition-colors">Marketing & Digital Solutions</button>
+                <button onclick="filterPortfolio('mobile', event)" class="filter-btn bg-gray-200 text-gray-700 px-6 py-2 rounded-full hover:bg-gray-300 transition-colors">Mobile & Software Development</button>
+                <button onclick="filterPortfolio('ai', event)" class="filter-btn bg-gray-200 text-gray-700 px-6 py-2 rounded-full hover:bg-gray-300 transition-colors">AI Automations & Integrations</button>
+            </div>
+            <!-- Portfolio Grid -->
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8" id="portfolioGrid">
+                <!-- Portfolio items will be rendered dynamically by JS -->
+            </div>
+        </div>
+    </section>
+    <!-- Footer -->
+    <footer class="text-[#1e293b] py-12 mt-20 border-t border-blue-100 glass" style="background-color: #08084f">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center flex flex-col items-center">
+                <!-- Logo with blue gradient underline accent -->
+                <div class="mb-2 flex flex-col items-center">
+                    <img src="/logoaf.png" alt="Aenfnite Logo" class="object-contain mb-2" style="max-width:160px; height:4rem; width:auto;" />
+                    <div style="height: 4px; width: 80px; background: linear-gradient(90deg, #2563eb 0%, #38bdf8 100%); border-radius: 2px;"></div>
+                </div>
+                
+                <p class="text-gray-500 mb-4">Digital innovation agency. Explore our portfolio and see what we can do for you.</p>
+                <div class="flex justify-center space-x-4 mb-4">
+                    <a href="https://aenfinite.com" class="text-blue-500 hover:text-blue-700 transition-colors font-semibold" target="_blank">Visit our Website</a>
+                </div>
+                <p class="text-gray-400">&copy;  All rights reserved by Aenfinite LLC 2025 .</p>
+            </div>
+        </div>
+    </footer>
+    <!-- Floating Action Button -->
+    <a href="#portfolio" class="floating-btn" title="Back to Top">
+        <span>&#8593;</span>
+    </a>
+    <script>
+        // Portfolio filtering
+        function filterPortfolio(category, event) {
+            const items = document.querySelectorAll('.portfolio-item');
+            const buttons = document.querySelectorAll('.filter-btn');
+            buttons.forEach(btn => {
+                btn.classList.remove('bg-blue-600', 'text-white');
+                btn.classList.add('bg-gray-200', 'text-gray-700');
+            });
+            if (event && event.target) {
+                event.target.classList.remove('bg-gray-200', 'text-gray-700');
+                event.target.classList.add('bg-blue-600', 'text-white');
+            } else {
+                // Set the "All Projects" button as active by default
+                buttons[0].classList.remove('bg-gray-200', 'text-gray-700');
+                buttons[0].classList.add('bg-blue-600', 'text-white');
+            }
+            items.forEach(item => {
+                if (category === 'all' || item.dataset.category === category) {
+                    item.style.display = 'block';
+                    setTimeout(() => {
+                        item.style.opacity = '1';
+                        item.style.transform = 'scale(1)';
+                    }, 100);
+                } else {
+                    item.style.opacity = '0';
+                    item.style.transform = 'scale(0.8)';
+                    setTimeout(() => {
+                        item.style.display = 'none';
+                    }, 300);
+                }
+            });
+        }
+        // Set default filter on load
+        window.onload = function() { filterPortfolio('all'); };
+
+         // Portfolio items data will be fetched from backend
+        async function fetchPortfolioItems() {
+          try {
+            const response = await fetch('http://localhost:5000/api/portfolio'); // Updated URL to backend endpoint
+            if (!response.ok) throw new Error('Failed to fetch portfolio items');
+            const items = await response.json();
+            renderPortfolioItems(items);
+          } catch (error) {
+            console.error(error);
+            // Optionally, show a fallback or error message
+            document.getElementById('portfolioGrid').innerHTML = '<div class="col-span-full text-center text-red-500">Failed to load portfolio items.</div>';
+          }
+        }
+
+        function renderPortfolioItems(items) {
+          const grid = document.getElementById('portfolioGrid');
+          grid.innerHTML = items.map(item => `
+            <a href="project.html?id=${item._id}" class="block card-hover">
+              <div class="portfolio-item glass bg-white/40 rounded-2xl overflow-hidden shadow-lg" data-category="${item.category}">
+                <div class="h-48 bg-gradient-to-br ${item.gradient} flex items-center justify-center relative p-0">
+                  ${item.image ? `<img src="${item.image}" alt="${item.title}" class="absolute inset-0 w-full h-full object-cover rounded-t-2xl" style="z-index:1;" />` : ''}
+                  <div class="w-full h-full flex items-center justify-center" style="position:relative; z-index:2;">
+                    ${!item.image ? item.icon : ''}
+                  </div>
+                </div>
+                <div class="p-6">
+                  <h3 class="text-xl font-semibold text-gray-800 mb-2">${item.title}</h3>
+                  <p class="text-gray-600 mb-4">${item.description}</p>
+                  <div class="flex flex-wrap gap-2">
+                    ${item.tags && Array.isArray(item.tags) ? item.tags.map(tag => `<span class="${tag.color} px-3 py-1 rounded-full text-sm">${tag.text}</span>`).join('') : ''}
+                  </div>
+                </div>
+              </div>
+            </a>
+          `).join('');
+        }
+
+        // Initial render: fetch from backend
+        fetchPortfolioItems();
+
+        // Sample portfolio items for MongoDB (for reference, not used in frontend JS)
+        // You can insert these into your MongoDB collection using Compass, Atlas, or a POST request.
+        // [
+        //   {
+        //     "title": "Custom & CMS Development",
+        //     "description": "Bespoke websites and CMS solutions tailored for business needs, including WordPress, Shopify, and custom platforms.",
+        //     "category": "cms",
+        //     "gradient": "from-blue-400 to-purple-500",
+        //     "icon": "<svg class=\"w-16 h-16 text-white\" fill=\"none\" stroke=\"currentColor\" viewBox=\"0 0 24 24\"><path stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9v-9m0-9v9\"></path></svg>",
+        //     "tags": [
+        //       { "text": "WordPress", "color": "bg-blue-100 text-blue-800" },
+        //       { "text": "Shopify", "color": "bg-green-100 text-green-800" },
+        //       { "text": "Custom", "color": "bg-purple-100 text-purple-800" },
+        //       { "text": "React", "color": "bg-yellow-100 text-yellow-800" },
+        //       { "text": "Etc", "color": "bg-orange-100 text-orange-800" }
+        //     ],
+        //     "image": "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=400&q=80"
+        //   },
+        //   {
+        //     "title": "UI/UX Designing & Branding",
+        //     "description": "Creative design solutions including UI/UX, branding, and visual identity for digital products and businesses.",
+        //     "category": "uiux",
+        //     "gradient": "from-indigo-400 to-pink-500",
+        //     "icon": "<svg class=\"w-16 h-16 text-white\" fill=\"none\" stroke=\"currentColor\" viewBox=\"0 0 24 24\"><path stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z\"></path></svg>",
+        //     "tags": [
+        //       { "text": "UI/UX", "color": "bg-pink-100 text-pink-800" },
+        //       { "text": "Branding", "color": "bg-orange-100 text-orange-800" },
+        //       { "text": "Web design", "color": "bg-purple-100 text-purple-800" },
+        //       { "text": "Graphics design", "color": "bg-blue-100 text-blue-800" },
+        //       { "text": "Trade show booth design", "color": "bg-green-100 text-green-800" }
+        //     ],
+        //     "image": "https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=400&q=80"
+        //   },
+        //   {
+        //     "title": "Marketing & Digital Solutions",
+        //     "description": "Boosted organic traffic, lead generation, and brand awareness for SaaS and e-commerce companies.",
+        //     "category": "marketing",
+        //     "gradient": "from-pink-400 to-red-500",
+        //     "icon": "<svg class=\"w-16 h-16 text-white\" fill=\"none\" stroke=\"currentColor\" viewBox=\"0 0 24 24\"><path stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zM21 5a2 2 0 00-2-2h-4a2 2 0 00-2 2v12a4 4 0 004 4h4a2 2 0 002-2V5z\"></path></svg>",
+        //     "tags": [
+        //       { "text": "SEO", "color": "bg-purple-100 text-purple-800" },
+        //       { "text": "Digital Marketing", "color": "bg-pink-100 text-pink-800" },
+        //       { "text": "PPC", "color": "bg-green-100 text-green-800" },
+        //       { "text": "Paid ads", "color": "bg-blue-100 text-blue-800" }
+        //     },
+        //     "image": "https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?auto=format&fit=crop&w=400&q=80"
+        //   }
+        // ]
+    </script>
+</body>
+</html>
